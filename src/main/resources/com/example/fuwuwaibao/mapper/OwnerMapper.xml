@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.fuwuwaibao.mapper.OwnerMapper">
+    <select id="getMachineId" resultType="java.lang.String">
+        SELECT machine_id
+        FROM owner_info
+        WHERE phone=#{phone}
+    </select>
+
+    <update id="updateInvited">
+        UPDATE owner_info
+        SET is_invited=true
+        WHERE phone=#{phone}
+    </update>
+
+    <select id="isInvited" resultType="java.lang.Boolean">
+        SELECT is_invited
+        FROM owner_info
+        WHERE phone=#{phone}
+    </select>
+
+    <update id="reset">
+        UPDATE owner_info
+        SET is_invited=false
+        WHERE phone=#{phone}
+    </update>
+
+    <update id="inputed">
+        UPDATE cater_info
+        SET needinput=true
+        WHERE cater_id=#{cater_id}
+    </update>
+
+    <select id="inputOk" resultType="java.lang.Boolean">
+        SELECT needInput
+        FROM cater_info
+        WHERE cater_id=#{cater_id}
+    </select>
+
+    <update id="inputReset">
+        UPDATE cater_info
+        SET needInput = false
+        WHERE cater_id=#{cater_id}
+    </update>
+
+</mapper>
